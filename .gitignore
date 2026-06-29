@@ -1,3 +1,4 @@
 /db.sqlite3
 __pycache__/
 order_list/__pycache__/
+order_list/migrations/

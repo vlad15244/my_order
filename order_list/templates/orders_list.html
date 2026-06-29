@@ -1,0 +1,19 @@
+<h1>Список заказов</h1>
+        <table class="recipe-table">
+        <thead>
+            <tr>
+            <th>ID</th>
+            <th>Наименование</th>
+            <th>Дата заказ-наряда</th>            
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+            <td>{{ order.id }}</td>                
+            <td>{{ order.name }}</td>
+            <td>{{ order.date:"Y-m-d H:i:s" }}</tdS>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
