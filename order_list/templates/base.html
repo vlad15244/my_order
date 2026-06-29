@@ -1,0 +1,16 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{%static 'order_list/css/color.css' %}">
+        <title>
+            {% block title %}список заказов {% endblock %}
+        </title>
+    </head>
+        <div id="content">
+            {% block content %} {% endblock %}
+        </div> 
+
+</html>
