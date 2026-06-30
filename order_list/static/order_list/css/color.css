@@ -259,3 +259,45 @@ legend {
   display: table;
   clear: both;
 }
+
+.django-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #333;
+}
+
+/* Синий заголовок как в Django admin */
+.django-table thead th {
+  background-color: #0c4b8e;       /* фирменный синий Django */
+  color: #fff;
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  border: 1px solid #093a6d;        /* чуть темнее для рамки */
+}
+
+/* Синяя сетка таблицы */
+.django-table td,
+.django-table th {
+  padding: 8px 12px;
+  border: 1px solid #b8c6d1;       /* светло-синяя/сероватая сетка */
+}
+
+/* Альтернатива: более выраженная синяя сетка */
+/*
+.django-table td,
+.django-table th {
+  border: 1px solid #4a7ba4;
+}
+*/
+
+/* Строки с чередованием фона (опционально, как в Django) */
+.django-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.django-table tbody tr:hover {
+  background-color: #eef2f5;
+}
