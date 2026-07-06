@@ -3,6 +3,7 @@
 {% block title %}Список заказов{% endblock %}
 {% block content %}
 <h1>Список заказов</h1>
+        {% if has_data %}
         <table class="django-table">
         <thead>
             <tr>
@@ -16,12 +17,15 @@
             {% for order in orders %}
             <tr>
             <td>{{ order.id }}</td> 
-            <td>{{ order.number }}</td>                
+            <td><a href="/edit/{{ order.number }}/">{{ order.number }}</a></td>                
             <td>{{ order.equipment }}</td>
             <td>{{ order.date|date:"Y-m-d" }}</tdS>
             </tr>
             {% endfor %}
         </tbody>
         </table>
+        {% else %}
+        <p>Нет данных</p>
+        {% endif %}
 <a href="{% url 'add_new' %}" class="btn">Добавить</a>
 {% endblock %}

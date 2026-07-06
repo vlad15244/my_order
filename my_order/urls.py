@@ -22,5 +22,6 @@ from order_list import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('orders/', views.orders_list, name = 'order_list'),
-    path('add/', views.add_order, name='add_new')       
+    path('add/', views.add_order, name='add_new'),
+    path('edit/<number>', views.order_edit, name='edit'),           
 ]
