@@ -26,6 +26,7 @@ def add_order(request):
     return render(request, 'order_list/add.html', {'form': form})
 
 def order_edit(request, number):
+    print(number)
     order_instance = get_object_or_404(Order, number=number)
 
     if request.method == 'POST':

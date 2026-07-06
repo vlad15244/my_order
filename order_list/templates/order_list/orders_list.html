@@ -17,9 +17,9 @@
             {% for order in orders %}
             <tr>
             <td>{{ order.id }}</td> 
-            <td><a href="/edit/{{ order.number }}/">{{ order.number }}</a></td>                
+            <td><a href="/{{ order.number }}/edit/">{{ order.number }}</a></td>                
             <td>{{ order.equipment }}</td>
-            <td>{{ order.date|date:"Y-m-d" }}</tdS>
+            <td>{{ order.date|date:"Y-m-d" }}</td>
             </tr>
             {% endfor %}
         </tbody>
