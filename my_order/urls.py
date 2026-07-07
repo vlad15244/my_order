@@ -17,11 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from order_list import views
+from order_list import views as order_list_views
+from events import views as events_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('orders/', views.orders_list, name = 'order_list'),
-    path('add/', views.add_order, name='add_new'),
-    path('<int:number>/edit/', views.order_edit, name='edit'),           
+    path('orders/', order_list_views.orders_list, name = 'order_list'),
+    path('events/', events_views.events_list, name = 'events_list'),    
+    path('add/', order_list_views.add_order, name='add_new'),
+    path('<int:number>/edit/', order_list_views.order_edit, name='edit'),
+
 ]

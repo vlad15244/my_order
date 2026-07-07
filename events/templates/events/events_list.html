@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Список событий{% endblock %}
+{% block content %}
+<h1>Список событий</h1>
+        {% if has_data %}
+        <table class="django-table">
+        <thead>
+            <tr>
+            <th>ID</th>
+            <th>Номер</th>
+            <th>Наименование</th>
+            <th>Дата заказ-наряда</th>            
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+            <td>{{ order.id }}</td> 
+            <td><a href="/{{ order.number }}/edit/">{{ order.number }}</a></td>                
+            <td>{{ order.equipment }}</td>
+            <td>{{ order.date|date:"Y-m-d" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+        {% else %}
+        <p>Нет данных</p>
+        {% endif %}
+<a href="{% url 'add_new' %}" class="btn">Добавить</a>
+{% endblock %}
