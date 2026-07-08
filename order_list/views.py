@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 
+import json
 # Create your views here.
 
 from .models import Order
@@ -37,5 +39,16 @@ def order_edit(request, number):
     else:
         form = OrderForm(instance=order_instance)
     return render(request, 'order_list/edit.html', {'form': form})
+
+
+@csrf_exempt
+def sorted_orders(request):
+    if request.method == 'POST':
+        value = json.loads(request.body)
+        current_status = value.get('status')
+        content = Order.objects.filter(status = current_status)
+
+        print(content)
+        
 
 

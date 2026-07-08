@@ -3,7 +3,19 @@
 {% block title %}Список заказов{% endblock %}
 {% block content %}
 <h1>Список заказов</h1>
+
+
         {% if has_data %}
+
+        <form>
+        <label for="status-select">Статус</label>
+        <select name="status" id="status-select">
+            <option value="">-- Выберите статус--</option>
+            <option value="work">В работе</option>
+            <option value="not_run">Выполнен, но не запущен</option>
+            <option value="done">Запущен</option>
+        </select>
+        </form>        
         <table class="django-table">
         <thead>
             <tr>
@@ -28,4 +40,5 @@
         <p>Нет данных</p>
         {% endif %}
 <a href="{% url 'add_new' %}" class="btn">Добавить</a>
+<script src="{% static 'order_list/js/table_update.js' %}" defer></script>  
 {% endblock %}
