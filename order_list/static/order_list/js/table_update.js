@@ -10,8 +10,8 @@ function update(event){
             method : 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'value' : current_value,
             },
+            body : JSON.stringify({"status" : current_value})
         }
     )
     .then(response => response.json())
