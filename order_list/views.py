@@ -45,9 +45,9 @@ def sorted_orders(request):
     if request.method == 'POST':
         body = json.loads(request.body)
         status_for_search = body.get('status')
-        content = Order.objects.filter(status = status_for_search)
-        print(content)
-        return JsonResponse({'status': status_for_search})
+        query_set = Order.objects.filter(status = status_for_search)
+        content = list(query_set.values('id', 'number', 'equipment', 'date'))
+        return JsonResponse({'status': status_for_search, 'content' : content, 'has_data' : len(query_set) > 0, 'size' : len(query_set)})
 
         
 
