@@ -26,41 +26,29 @@ function update(event){
 function data_bind(data){
     const has_data = data[`has_data`];
     const size = data[`size`];
-    console.log(size);
+    const content = data[`content`];
     const tbody = table_order.querySelector('tbody');
     tbody.innerHTML = ''; 
 
     if (has_data){
 
-        const data_for_table = data[`content`];
-     
         let html_code = '';
-        /*<tbody>
-            {% for order in orders %}
-            <tr>
-            <td>{{ order.id }}</td> 
-            <td><a href="/{{ order.number }}/edit/">{{ order.number }}</a></td>                
-            <td>{{ order.equipment }}</td>
-            <td>{{ order.date|date:"Y-m-d" }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>*/ 
-        
-        
-        for (let i = 1; i <= size;i++){
-            const id = data_for_table[i][`ID`];
-            const number = data_for_table[i][`Number`];
 
+        for (let i=0; i<size; i++){
+            const row = content[i];
+            
+            html_code += `<tr>
+                <td>${row.id}</td>
+                <td><a href="/${row.number}/edit/">${row.number}</a></td>
+                <td>${row.equipment}</td>
+                <td>${row.date}</td>                                
+            
+            `
 
-          html += `
-              <tr>
-                <td>${id}</td>
-                <td>${number}</td>                                                         
-              </tr>
-            `;            
-          
         }
-        tbody.innerHTML = html;
+        
+
+        tbody.innerHTML = html_code;
     }
     else{
         tbody.innerHTML = '<p>Нет данных</p>';        
