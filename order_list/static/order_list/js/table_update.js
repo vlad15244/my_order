@@ -6,7 +6,7 @@ const table_order = document.getElementById("order_table");
 
 function update(event){
     const current_value = event.target.value;
-    table_order.innerHTML = '';
+
     fetch('/sorted_orders/', 
         {
             method : 'POST',
@@ -21,44 +21,49 @@ function update(event){
     .catch(error => console.error('Ошибка:', error));
 
 
-
-
-
-    /*
-    const has_data = data[`has_data`];
-
-    const data_for_table = data[`content`];
-    data_for_table.array.forEach(element => {
-        const row = table_order.insertRow();
-        const IDCell = row.insertCell();
-        IDCell.textContent = data_for_table['ID'];
-
-    });*/
-
-
-
-
 }
 
 function data_bind(data){
     const has_data = data[`has_data`];
     const size = data[`size`];
     console.log(size);
-    
+    const tbody = table_order.querySelector('tbody');
+    tbody.innerHTML = ''; 
+
     if (has_data){
 
         const data_for_table = data[`content`];
-  
+     
+        let html_code = '';
+        /*<tbody>
+            {% for order in orders %}
+            <tr>
+            <td>{{ order.id }}</td> 
+            <td><a href="/{{ order.number }}/edit/">{{ order.number }}</a></td>                
+            <td>{{ order.equipment }}</td>
+            <td>{{ order.date|date:"Y-m-d" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>*/ 
+        
+        
         for (let i = 1; i <= size;i++){
-            const tr = document.createElement('tr');
+            const id = data_for_table[i][`ID`];
+            const number = data_for_table[i][`Number`];
 
-            
-            const row =  table_order.insertRow();
-            const IDCell = row.insertCell();
-            IDCell.textContent = data_for_table['id'];
-            const NumberCell = row.insertCell();
-            NumberCell.textContent = data_for_table['number'];            
+
+          html += `
+              <tr>
+                <td>${id}</td>
+                <td>${number}</td>                                                         
+              </tr>
+            `;            
+          
         }
-
+        tbody.innerHTML = html;
     }
+    else{
+        tbody.innerHTML = '<p>Нет данных</p>';        
+    }
+
 }
