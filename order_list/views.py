@@ -1,12 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponse
+from rest_framework import viewsets
+from .serializers import OrdersSerializer
 import json
 # Create your views here.
 
 from .models import Order
 from .forms import OrderForm
 
+class OrdersViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrdersSerializer
+        
 
 def orders_list(request):
     orders = Order.objects.order_by('-number') 
@@ -47,13 +53,13 @@ def sorted_orders(request):
         status_for_search = body.get('status')
         print(status_for_search)
 
-        if status_for_search :
-            query_set = Order.objects.filter(status = status_for_search)
+        if status_for_search:
+            query_set = Order.objects.filter(status=status_for_search)
             content = list(query_set.values('id', 'number', 'equipment', 'date'))
         else:
             query_set = Order.objects.all()
             content = list(query_set.values('id', 'number', 'equipment', 'date'))            
-        return JsonResponse({'status': status_for_search, 'content' : content, 'has_data' : len(query_set) > 0, 'size' : len(query_set)})
+        return JsonResponse({'status': status_for_search, 'content': content, 'has_data': len(query_set) > 0, 'size': len(query_set)})
 
         
 

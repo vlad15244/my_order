@@ -4,3 +4,4 @@ order_list/__pycache__/
 order_list/migrations/
 events/__pycache__/
 events/migrations/
+/venv/
