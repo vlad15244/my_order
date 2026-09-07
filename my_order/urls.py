@@ -26,6 +26,7 @@ router.register(r'orders', order_list_views.OrdersViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', order_list_views.main, name = 'main'),    
     path('orders/', order_list_views.orders_list, name = 'order_list'),
     path('events/', events_views.events_list, name = 'events_list'),    
     path('add/', order_list_views.add_order, name='add_new'),

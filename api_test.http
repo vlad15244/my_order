@@ -1,1 +1,4 @@
 GET http://localhost:8000/api/orders/
+
+###
+GET http://localhost:8000/api/events/
