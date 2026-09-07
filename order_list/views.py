@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from rest_framework import viewsets
 from .serializers import OrdersSerializer
 import json
@@ -10,11 +10,9 @@ import json
 from .models import Order
 from .forms import OrderForm
 
-
 class OrdersViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrdersSerializer
-
 
 def orders_list(request):
     orders = Order.objects.order_by("-number")
@@ -26,7 +24,6 @@ def orders_list(request):
 
 def main(request):
     return redirect("orders/")
-
 
 def add_order(request):
 
@@ -40,7 +37,6 @@ def add_order(request):
 
     return render(request, "order_list/add.html", {"form": form})
 
-
 def order_edit(request, number):
 
     order_instance = get_object_or_404(Order, number=number)
@@ -53,7 +49,6 @@ def order_edit(request, number):
     else:
         form = OrderForm(instance=order_instance)
     return render(request, "order_list/edit.html", {"form": form})
-
 
 @csrf_exempt
 def sorted_orders(request):

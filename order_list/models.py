@@ -1,5 +1,5 @@
 from django.db import models
-
+import json
 # Create your models here.
 class Order(models.Model):
 
@@ -29,12 +29,12 @@ class Order(models.Model):
     date_rom  = models.DateField(verbose_name='Дата заявки')
 
     def __str__(self):
-        return f"{self.number} - {self.equipment}"     
+        return f"{self.number} - {self.equipment}" 
+
+    def get_statuses_json(self):
+        data = [{"value": k, "label": v} for k, v in self.STATUS_ORDER]
+        return json.dumps(data, ensure_ascii=False)    
 
     class Meta:
         verbose_name = 'Заказы'
         ordering = ['number', 'date']
-
-
-
-
