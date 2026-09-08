@@ -59,8 +59,14 @@ def sorted_orders(request):
         status_for_search = body.get("status")
 
         if status_for_search:
-            query_set = Order.objects.filter(status=status_for_search)
-            content = list(query_set.values("id", "number", "equipment", "date"))
+
+
+            if status_for_search == "all":
+                query_set = Order.objects.all()
+                content = list(query_set.values("id", "number", "equipment", "date"))
+            else:
+                query_set = Order.objects.filter(status=status_for_search)
+                content = list(query_set.values("id", "number", "equipment", "date"))                
         else:
             query_set = Order.objects.all()
             content = list(query_set.values("id", "number", "equipment", "date"))

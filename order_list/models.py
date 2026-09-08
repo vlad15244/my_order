@@ -12,7 +12,8 @@ class Order(models.Model):
     STATUS_ORDER = (
         ('work', 'В работе'),
         ('not_run', 'Выполнен, но не запущен'),
-        ('done', 'Запущен'),                
+        ('done', 'Запущен'),
+        ('not_work', 'Необработан'),                        
     )
 
     STATUS_ROM = (

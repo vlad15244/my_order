@@ -12,9 +12,10 @@
             <select name="status" id="status-select">      
             <option disabled selected>Выберите статус</option>
                 {% for status in statuses %}
-                <option value={{ status.value }} >{{ status.label }}</option>       
+                    <option value={{ status.value }} >{{ status.label }}</option>       
                 {% endfor %}
-            </select>                     
+            <option value="" >Все заказы</option>                
+            </select>      
         </form>        
         <table class="django-table" id="order_table">
         <thead>
