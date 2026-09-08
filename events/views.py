@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Event
 from .forms import EventForm
-from order_list.models import get_statuses_json
+from order_list.models import get_statuses_json, Order
 
 
 def events_list(request):
@@ -13,6 +13,7 @@ def events_list(request):
     content = {'events': events}
     content['has_data'] = len(events) > 0
     content['statuses'] = get_statuses_json(obj=Event.CLASS_EVENT)
+    content['orders'] = Order.objects.order_by('-date')
 
     return render(request, 'events/events_list.html', content)
 

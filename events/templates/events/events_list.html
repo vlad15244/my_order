@@ -3,6 +3,14 @@
 {% block title %}Список событий{% endblock %}
 {% block content %}
 <h1>Список событий</h1>
+        <label for="order-select">Заказ наряды</label>
+        <select name="order_select" id="order-select">  
+        <option disabled selected>Выберите заказ-наряд...</option>
+            {% for order in orders %}
+                <option value={{ order.number }} >{{order.number}} - {{ order.equipment }}</option>       
+            {% endfor %}
+        <option value="" >Все заказы</option> 
+        </select>   
         {% if has_data %}
         <table class="django-table">
         <thead>
