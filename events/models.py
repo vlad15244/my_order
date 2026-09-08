@@ -5,7 +5,6 @@ from order_list.models import Order
 # Create your models here.
 class Event(models.Model):
 
-
     CLASS_EVENT = (
         ('critical_error', 'Кртитическая ошибка ПО'),
         ('rework', 'Доработка ПО'),

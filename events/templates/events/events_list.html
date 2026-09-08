@@ -17,8 +17,12 @@
             {% for event in events %}
             <tr>
             <td>{{ event.order }}</td>              
-            <td>{{ event.type }}</td>
-            <td>{{ event.description }}</td>            
+            {% for status in statuses %}
+                {% if status.value == event.type %}
+                    <td>{{ status.label }}</td>
+                {% endif %}                           
+            {% endfor %} 
+            <td>{{ event.description }}</td>           
             <td>{{ event.date|date:"Y-m-d" }}</td>
             </tr>
             {% endfor %}
