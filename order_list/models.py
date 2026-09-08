@@ -1,6 +1,12 @@
 from django.db import models
 import json
 # Create your models here.
+
+def get_statuses_json(obj):
+    data = [{"value": k, "label": v} for k, v in obj]
+    statuses = json.dumps(data, ensure_ascii=False) 
+    return json.loads(statuses)   
+
 class Order(models.Model):
 
     STATUS_ORDER = (
@@ -30,10 +36,6 @@ class Order(models.Model):
 
     def __str__(self):
         return f"{self.number} - {self.equipment}" 
-
-    def get_statuses_json(self):
-        data = [{"value": k, "label": v} for k, v in self.STATUS_ORDER]
-        return json.dumps(data, ensure_ascii=False)    
 
     class Meta:
         verbose_name = 'Заказы'

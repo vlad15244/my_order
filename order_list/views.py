@@ -7,7 +7,7 @@ import json
 
 # Create your views here.
 
-from .models import Order
+from .models import Order, get_statuses_json
 from .forms import OrderForm
 
 class OrdersViewSet(viewsets.ModelViewSet):
@@ -18,6 +18,8 @@ def orders_list(request):
     orders = Order.objects.order_by("-number")
     content = {"orders": orders}
     content["has_data"] = len(orders) > 0
+    content["statuses"] = get_statuses_json(obj=Order.STATUS_ORDER)
+    print(content)   
 
     return render(request, "order_list/orders_list.html", content)
 

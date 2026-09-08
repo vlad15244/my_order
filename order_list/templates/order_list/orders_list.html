@@ -8,13 +8,13 @@
         {% if has_data %}
 
         <form>
-        <label for="status-select">Статус</label>
-        <select name="status" id="status-select">
-            <option value="">-- Выберите статус--</option>
-            <option value="work">В работе</option>
-            <option value="not_run">Выполнен, но не запущен</option>
-            <option value="done">Запущен</option>
-        </select>
+            <label for="status-select">Статус</label>
+            <select name="status" id="status-select">      
+            <option disabled selected>Выберите статус</option>
+                {% for status in statuses %}
+                <option value={{ status.value }} >{{ status.label }}</option>       
+                {% endfor %}
+            </select>                     
         </form>        
         <table class="django-table" id="order_table">
         <thead>
