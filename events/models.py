@@ -13,7 +13,7 @@ class Event(models.Model):
     )
 
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name = 'events')
-    type = models.CharField(max_length=15, choices=CLASS_EVENT, default='critical_error', verbose_name='Тип') 
+    type = models.CharField(max_length=15, choices=CLASS_EVENT, default='mp_release', verbose_name='Тип') 
     description = models.CharField(max_length=150,verbose_name='Описание')  
     date = models.DateField(verbose_name='Дата получения обнаружения')       
 
