@@ -9,8 +9,15 @@
             {% block title %}Система учета заказов{% endblock %}
         </title>
     </head>
+        <div class="button-group">
+            <a href="{% url 'order_list' %}" class="link">Заказы</a>
+            <a href="{% url 'events_list' %}" class="link">События</a>
+        </div>
+            
+        </div>
         <div id="content">
             {% block content %} {% endblock %}
         </div> 
+
 
 </html>

@@ -19,8 +19,6 @@ def orders_list(request):
     content = {"orders": orders}
     content["has_data"] = len(orders) > 0
     content["statuses"] = get_statuses_json(obj=Order.STATUS_ORDER)
-    print(content)   
-
     return render(request, "order_list/orders_list.html", content)
 
 
