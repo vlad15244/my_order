@@ -12,7 +12,7 @@
         <option value="" >Все заказы</option> 
         </select>   
         {% if has_data %}
-        <table class="django-table">
+        <table class="django-table" id = "event_table">
         <thead>
             <tr>
             <th>Заказ-наряд</th>
@@ -40,4 +40,5 @@
         <p>Нет данных</p>
         {% endif %}
 <a href="{% url 'add_new_events' %}" class="btn">Добавить</a>
+<script src="{% static 'events/js/table_update.js' %}" defer></script>
 {% endblock %}
