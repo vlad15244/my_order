@@ -32,25 +32,26 @@ def add_order(request):
     return render(request, "events/add.html", {"form": form})
 
 @csrf_exempt
-def sorted_orders(request):
+def sorted_events(request):
     if request.method == "POST":
         body = json.loads(request.body)
-        order_for_search = body.get("order")
+        status_for_search = body.get("order")
 
-        if order_for_search:
+        if status_for_search:
 
-            if order_for_search == "all":
-                query_set = Order.objects.all()
-                content = list(query_set.values("id", "number", "equipment", "date"))
+
+            if status_for_search == "all":
+                query_set = Event.objects.all()
+                content = list(query_set.values("order", "type", "description", "date"))
             else:
-                query_set = Order.objects.filter(status=order_for_search)
-                content = list(query_set.values("id", "number", "equipment", "date"))                
+                query_set = Event.objects.filter(status=status_for_search)
+                content = list(query_set.values("order", "type", "description", "date"))               
         else:
-            query_set = Order.objects.all()
-            content = list(query_set.values("id", "number", "equipment", "date"))
+            query_set = Event.objects.all()
+            content = list(query_set.values("order", "type", "description", "date"))
         return JsonResponse(
             {
-                "status": order_for_search,
+                "order": status_for_search,
                 "content": content,
                 "has_data": len(query_set) > 0,
                 "size": len(query_set),

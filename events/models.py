@@ -1,6 +1,5 @@
 from django.db import models
 
-
 from order_list.models import Order
 # Create your models here.
 class Event(models.Model):
@@ -23,3 +22,5 @@ class Event(models.Model):
     class Meta:
         verbose_name = 'События'
         ordering = ['order', 'date']    
+
+

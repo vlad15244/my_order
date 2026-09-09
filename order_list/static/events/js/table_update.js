@@ -5,15 +5,15 @@ const table_order = document.getElementById("event_table");
 
 
 function update(event){
-    const current_value = event.target.value;
+    const order_for_request = event.target.value;
 
-    fetch('/filter_events/', 
+    fetch('/sorted_events/', 
         {
             method : 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body : JSON.stringify({"status" : current_value})
+            body : JSON.stringify({"order" : order_for_request})
         }
     )
     .then(response => response.json())
@@ -38,16 +38,14 @@ function data_bind(data){
             const row = content[i];
             
             html_code += `<tr>
-                <td>${row.id}</td>
-                <td><a href="/${row.number}/edit/">${row.number}</a></td>
-                <td>${row.equipment}</td>
-                <td>${row.date}</td>                                
-            
+                <td>${row.order}</td>
+                <td>${row.type}</td>
+                <td>${row.description}</td>                                
+                <td>${row.date}</td>                
             `
 
         }
         
-
         tbody.innerHTML = html_code;
     }
     else{

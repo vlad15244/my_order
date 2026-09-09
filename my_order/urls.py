@@ -32,6 +32,7 @@ urlpatterns = [
     path('add_events/', events_views.add_order, name = 'add_new_events'),        
     path('add/', order_list_views.add_order, name='add_new'),
     path('<int:number>/edit/', order_list_views.order_edit, name='edit'),
-    path('sorted_orders/', order_list_views.sorted_orders, name='sorted'),  
+    path('sorted_orders/', order_list_views.sorted_orders, name='sorted'), 
+    path('sorted_events/', events_views.sorted_events, name='sorted_events'),  
     path('api/', include(router.urls)),
 ]
