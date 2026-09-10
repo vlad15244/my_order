@@ -29,6 +29,7 @@ function data_bind(data){
     const statuses = data[`statuses`];
     const size = data[`size`];
     const content = data[`content`];
+    const orders = data[`orders_list`];
     const tbody = table_order.querySelector('tbody');
     tbody.innerHTML = ''; 
 
@@ -41,13 +42,21 @@ function data_bind(data){
             let status_string = ``;
             
             for (let j=0;j<statuses.length;j++){
-                if (statuses[i].value == row.type){
-                    status_string = statuses[i].label;
+                if (statuses[j].value == row.type){
+                    status_string = statuses[j].label;
+                }
+            }
+
+            let order_equipment = ``;
+
+            for (let k=0;k<orders.length;k++){
+                if (orders[k].id == row.order){
+                    order_equipment = `${orders[k].number} - ${orders[k].equipment}`;
                 }
             }
 
             html_code += `<tr>
-                <td>${row.order}</td>
+                <td>${order_equipment}</td>
                 <td>${status_string}</td>
                 <td>${row.description}</td>                                
                 <td>${row.date}</td>                
