@@ -25,6 +25,7 @@ function update(event){
 
 function data_bind(data){
     const has_data = data[`has_data`];
+    const type = data[`statuses`];
     const size = data[`size`];
     const content = data[`content`];
     const tbody = table_order.querySelector('tbody');

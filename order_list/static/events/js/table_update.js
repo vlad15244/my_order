@@ -24,7 +24,9 @@ function update(event){
 }
 
 function data_bind(data){
+    console.log(data)
     const has_data = data[`has_data`];
+    const statuses = data[`statuses`];
     const size = data[`size`];
     const content = data[`content`];
     const tbody = table_order.querySelector('tbody');
@@ -36,6 +38,14 @@ function data_bind(data){
 
         for (let i=0; i<size; i++){
             const row = content[i];
+            
+            for (let )
+
+            if (statuses[i][`value`] == row.type){
+
+            }
+
+
             
             html_code += `<tr>
                 <td>${row.order}</td>
