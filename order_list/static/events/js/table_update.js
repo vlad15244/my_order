@@ -38,18 +38,17 @@ function data_bind(data){
 
         for (let i=0; i<size; i++){
             const row = content[i];
+            let status_string = ``;
             
-            for (let )
-
-            if (statuses[i][`value`] == row.type){
-
+            for (let j=0;j<statuses.length;j++){
+                if (statuses[i].value == row.type){
+                    status_string = statuses[i].label;
+                }
             }
 
-
-            
             html_code += `<tr>
                 <td>${row.order}</td>
-                <td>${row.type}</td>
+                <td>${status_string}</td>
                 <td>${row.description}</td>                                
                 <td>${row.date}</td>                
             `
