@@ -7,7 +7,7 @@
         <select name="order_select" id="order-select">  
         <option disabled selected>Выберите заказ-наряд...</option>
             {% for order in orders %}
-                <option value={{ order.number }} >{{order.number}} - {{ order.equipment }}</option>       
+                <option value={{ order.id }} >{{order.number}} - {{ order.equipment }}</option>       
             {% endfor %}
         <option value="" >Все заказы</option> 
         </select>   

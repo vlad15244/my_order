@@ -15,7 +15,7 @@ def events_list(request):
     content['has_data'] = len(events) > 0
     content['statuses'] = get_statuses_json(obj=Event.CLASS_EVENT)
     content['orders'] = Order.objects.order_by('-date')
-
+    
     return render(request, 'events/events_list.html', content)
 
 
@@ -41,16 +41,20 @@ def sorted_events(request):
 
 
             if order_for_search == "all":
+                orders = Order.objects.order_by('-date')
                 query_set = Event.objects.all()
                 content = list(query_set.values("order", "type", "description", "date"))
             else:
+                orders = Order.objects.order_by('-date')
                 query_set = Event.objects.filter(order=order_for_search)
                 content = list(query_set.values("order", "type", "description", "date"))               
         else:
             query_set = Event.objects.all()
             content = list(query_set.values("order", "type", "description", "date"))
+            orders = Order.objects.order_by('-date')
         return JsonResponse(
             {
+                "orders_list" : list(orders.values("number")),
                 "order": order_for_search,
                 "content": content,
                 "has_data": len(query_set) > 0,
