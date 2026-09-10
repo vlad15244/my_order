@@ -35,23 +35,23 @@ def add_order(request):
 def sorted_events(request):
     if request.method == "POST":
         body = json.loads(request.body)
-        status_for_search = body.get("order")
+        order_for_search = body.get("order")
 
-        if status_for_search:
+        if order_for_search:
 
 
-            if status_for_search == "all":
+            if order_for_search == "all":
                 query_set = Event.objects.all()
                 content = list(query_set.values("order", "type", "description", "date"))
             else:
-                query_set = Event.objects.filter(status=status_for_search)
+                query_set = Event.objects.filter(order=order_for_search)
                 content = list(query_set.values("order", "type", "description", "date"))               
         else:
             query_set = Event.objects.all()
             content = list(query_set.values("order", "type", "description", "date"))
         return JsonResponse(
             {
-                "order": status_for_search,
+                "order": order_for_search,
                 "content": content,
                 "has_data": len(query_set) > 0,
                 "size": len(query_set),
